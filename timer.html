@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch Timer</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0f0f13;
+      font-family: 'Courier New', Courier, monospace;
+      color: #e8e8f0;
+    }
+
+    h1 {
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #6b6b8a;
+      margin-bottom: 2.5rem;
+    }
+
+    #timerDisplay {
+      font-size: 7rem;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      color: #e8e8f0;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+      min-width: 4ch;
+      text-align: center;
+      /* Subtle glow when running */
+      transition: text-shadow 0.3s ease;
+    }
+
+    #timerDisplay.running {
+      color: #a0f0c0;
+      text-shadow: 0 0 30px rgba(160, 240, 192, 0.35);
+    }
+
+    #statusLabel {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #44445a;
+      margin-bottom: 3rem;
+      height: 1em;
+      transition: color 0.3s ease;
+    }
+
+    #statusLabel.running {
+      color: #5dbf80;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 220px;
+    }
+
+    .controls input[type="button"] {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid #2e2e42;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      background: transparent;
+      color: #9090b0;
+    }
+
+    #startTimer {
+      border-color: #3a5a48;
+      color: #7abf99;
+    }
+    #startTimer:hover {
+      background: #1a2e22;
+      border-color: #5dbf80;
+      color: #a0f0c0;
+    }
+
+    #stopTimer {
+      border-color: #4a3a2e;
+      color: #bf9a6a;
+    }
+    #stopTimer:hover {
+      background: #2a1e14;
+      border-color: #c07830;
+      color: #e0a060;
+    }
+
+    #resetTimer {
+      border-color: #3a2e4a;
+      color: #9a7abf;
+    }
+    #resetTimer:hover {
+      background: #1e1428;
+      border-color: #7840c0;
+      color: #c0a0e0;
+    }
+
+    .controls input[type="button"]:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Stopwatch</h1>
+
+  <div id="timerDisplay">0</div>
+  <div id="statusLabel">stopped</div>
+
+  <div class="controls">
+    <input type="button" id="startTimer" value="Start Timer">
+    <input type="button" id="stopTimer" value="Stop Timer">
+    <input type="button" id="resetTimer" value="Reset Timer">
+  </div>
+
+  <script>
+    var seconds = 0;
+    var intervalId = null;
+
+    function isRunning() {
+      return intervalId !== null;
+    }
+
+    function updateDisplay() {
+      document.getElementById('timerDisplay').innerHTML = seconds;
+    }
+
+    function setRunningState(running) {
+      var display = document.getElementById('timerDisplay');
+      var status  = document.getElementById('statusLabel');
+      if (running) {
+        display.className = 'running';
+        status.className  = 'running';
+        status.innerHTML  = 'running';
+      } else {
+        display.className = '';
+        status.className  = '';
+        status.innerHTML  = 'stopped';
+      }
+    }
+
+    document.getElementById('startTimer').onclick = function() {
+      if (isRunning()) return;          // already running — ignore extra clicks
+      intervalId = setInterval(function() {
+        seconds++;
+        updateDisplay();
+      }, 1000);
+      setRunningState(true);
+    };
+
+    document.getElementById('stopTimer').onclick = function() {
+      if (!isRunning()) return;         // already stopped — ignore extra clicks
+      clearInterval(intervalId);
+      intervalId = null;
+      setRunningState(false);
+    };
+
+    document.getElementById('resetTimer').onclick = function() {
+      clearInterval(intervalId);
+      intervalId = null;
+      seconds = 0;
+      updateDisplay();
+      setRunningState(false);
+    };
+  </script>
+
+</body>
+</html>

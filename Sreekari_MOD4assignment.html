@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Functions Assignment</title>
+</head>
+<body>
+  <input id="nameInput" type="text" placeholder="Enter Name">
+  <input id="ageInput" type="number" placeholder="Enter Age">
+  <input id="myButton" type="button" value="Generate Song">
+  <p id="output"></p>
+
+  <script>
+
+    // Create function, happyBirthday, that outputs "Happy Birthday to you!" using the innerHTML property
+    function happyBirthday() {
+      document.getElementById("output").innerHTML += "Happy Birthday to you!<br>";
+    }
+
+    // Create function, birthdayName, that receives an argument from the nameInput input field
+    // and outputs a personalized "Happy Birthday dear, <name>!" using the innerHTML property"
+    function birthdayName(name) {
+      document.getElementById("output").innerHTML += "Happy Birthday dear " + name + ",<br>";
+    }
+
+    // Create function, personalizedSong, that receives two arguments, age and name.
+    function personalizedSong(age, name) {
+      document.getElementById("output").innerHTML += "You're " + age + " years old today!<br><br>";
+      happyBirthday();
+      happyBirthday();
+      birthdayName(name);
+      happyBirthday();
+    }
+
+    // Add an event listener to myButton that, once clicked, executes an anonymous function.
+    document.getElementById("myButton").addEventListener("click", function() {
+      // 1. Clear the contents of the output innerHTML.
+      document.getElementById("output").innerHTML = "";
+      // 2. Get the values of the nameInput and ageInput input fields and assign them to local variables.
+      var name = document.getElementById("nameInput").value;
+      var age = document.getElementById("ageInput").value;
+      // 3. Call the personalizedSong function, using the local variables as its arguments.
+      personalizedSong(age, name);
+    });
+
+  </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Homework</title>
+    <script src="dom-homework.js" defer></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      #myDiv {
+        padding: 20px;
+        border-radius: 8px;
+        border: 2px solid #ccc;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .highlight {
+        background-color: #4a90d9;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 6px;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      li {
+        margin: 6px 0;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+
+      #addBtn {
+        display: block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      #addBtn:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="myDiv"></div>
+
+    <button id="addBtn">Add new list item</button>
+
+  </body>
+</html>

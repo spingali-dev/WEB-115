@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow — Task Manager</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-mark">TF</span>
+        <div class="brand-text">
+          <h1>TaskFlow</h1>
+          <p>a ticket for every to‑do</p>
+        </div>
+      </div>
+      <div class="header-stats" id="headerStats" aria-live="polite">
+        <div class="stat">
+          <span class="stat-value" id="statOpen">0</span>
+          <span class="stat-label">open</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="statDone">0</span>
+          <span class="stat-label">done</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- Ticket-booth style entry form -->
+    <section class="booth" aria-labelledby="boothTitle">
+      <div class="booth-card">
+        <div class="booth-header">
+          <h2 id="boothTitle">Issue a new ticket</h2>
+          <span class="booth-sub">fill it out, print it below</span>
+        </div>
+
+        <form id="taskForm" novalidate>
+          <div class="field field-name">
+            <label for="taskName">Task</label>
+            <input
+              type="text"
+              id="taskName"
+              name="taskName"
+              placeholder="e.g. Finish JavaScript project"
+              autocomplete="off"
+            />
+            <p class="field-error" id="nameError" role="alert"></p>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="taskPriority">Priority</label>
+              <select id="taskPriority" name="taskPriority">
+                <option value="High">High</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+
+            <div class="field field-check">
+              <label class="check-label" for="taskImportant">
+                <input type="checkbox" id="taskImportant" name="taskImportant" />
+                <span class="check-box" aria-hidden="true"></span>
+                Mark important
+              </label>
+            </div>
+
+            <div class="field field-check">
+              <label class="check-label" for="taskCompleted">
+                <input type="checkbox" id="taskCompleted" name="taskCompleted" />
+                <span class="check-box" aria-hidden="true"></span>
+                Already done
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span>Print ticket</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Task display -->
+    <section class="board" aria-labelledby="boardTitle">
+      <div class="board-header">
+        <h2 id="boardTitle">Your tickets</h2>
+        <div class="board-filters" id="boardFilters">
+          <button type="button" class="filter-btn active" data-filter="all">All</button>
+          <button type="button" class="filter-btn" data-filter="open">Open</button>
+          <button type="button" class="filter-btn" data-filter="important">Important</button>
+          <button type="button" class="filter-btn" data-filter="done">Done</button>
+        </div>
+      </div>
+
+      <div id="taskmanager"><!-- tasks render here via JS --></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with vanilla HTML, CSS &amp; JavaScript for TaskFlow Solutions.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

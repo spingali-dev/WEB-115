@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>M5 - Simple Sentence Generator</title>
+</head>
+<body>
+  <h2>Simple Sentence Generator</h2>
+  <input type="button" id="generateBtn" value="Generate Sentence">
+  <p id="output"></p>
+
+  <script>
+    /* Create an array */
+    var words = ["Bubblegum", "is", "my", "favorite", "treat"];
+
+    /* Create function that concatenates array into 
+       a sentence (adding spaces between words), and 
+       outputs the result to '<p id="output"></p>' innerHTML */
+    function generateSentence() {
+      var sentence = "";
+
+      for (var i = 0; i < words.length; i++) {
+        sentence = sentence + words[i] + " ";
+      }
+
+      sentence = sentence.trim();
+
+      document.getElementById("output").innerHTML = sentence;
+    }
+
+    /* Add an event listener to generateBtn.
+       When clicked, the generateBtn should execute 
+       the generateSentence function, displaying the sentence. */
+    document.getElementById("generateBtn").addEventListener("click", generateSentence);
+  </script>
+</body>
+</html>
